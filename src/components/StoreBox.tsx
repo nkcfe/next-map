@@ -22,7 +22,7 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
                   src={
                     store?.bizcnd_code_nm
                       ? `/images/markers/${store?.bizcnd_code_nm}.png`
-                      : "images/markers/default.png"
+                      : "/images/markers/default.png"
                   }
                   alt="아이콘 이미지"
                   width={40}
@@ -63,7 +63,9 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
             type="button"
             onClick={() => window.alert("상세보기 작업중")}
             className="w-full bg-blue-700 hover:bg-blue-500 focus:bg-blue-500 py-3 text-white font-semibold rounded-b-lg"
-          >상세보기</button>
+          >
+            상세보기
+          </button>
         </>
       )}
     </div>
