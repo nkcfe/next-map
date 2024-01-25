@@ -4,9 +4,10 @@ import { AiOutlineInfoCircle } from "react-icons/ai";
 import { LuMapPin } from "react-icons/lu";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
+import { StoreType } from "@/interface";
 
 interface StoreBoxProps {
-  store: any;
+  store: StoreType | null;
   setStore: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -20,8 +21,8 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
               <div className="flex gap-4 items-center">
                 <Image
                   src={
-                    store?.bizcnd_code_nm
-                      ? `/images/markers/${store?.bizcnd_code_nm}.png`
+                    store?.category
+                      ? `/images/markers/${store?.category}.png`
                       : "/images/markers/default.png"
                   }
                   alt="아이콘 이미지"
@@ -29,8 +30,8 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
                   height={40}
                 />
                 <div>
-                  <div className="font-semibold">{store?.upso_nm}</div>
-                  <div className="text-sm">{store?.cob_code_nm}</div>
+                  <div className="font-semibold">{store?.name}</div>
+                  <div className="text-sm">{store?.storeType}</div>
                 </div>
               </div>
               <button
@@ -44,19 +45,19 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
             </div>
             <div className="mt-4 flex gap-2 items-center">
               <LuMapPin />
-              {store.rdn_code_nm}
+              {store.address}
             </div>
             <div className="mt-2 flex gap-2 items-center">
               <FaPhoneAlt />
-              {store.tel_no}
+              {store.phone}
             </div>
             <div className="mt-2 flex gap-2 items-center">
               <AiOutlineInfoCircle />
-              {store.crtfc_gbn_nm}
+              {store.foodCertifyName}
             </div>
             <div className="mt-2 flex gap-2 items-center">
               <FaCheck />
-              {store.bizcnd_code_nm}
+              {store.category}
             </div>
           </div>
           <button

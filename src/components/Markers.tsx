@@ -3,7 +3,7 @@ import { useCallback, useEffect } from "react";
 
 interface MarkerProps {
   map: any;
-  stores: any[];
+  stores: StoreType[];
   setCurrentStore: React.Dispatch<React.SetStateAction<any>>;
 }
 
@@ -11,8 +11,8 @@ export default function Markers({ map, stores, setCurrentStore }: MarkerProps) {
   const loadKakaoMarkers = useCallback(() => {
     if (map) {
       stores?.map((store) => {
-        var imageSrc = store?.bizcnd_code_nm
-            ? `/images/markers/${store?.bizcnd_code_nm}.png`
+        var imageSrc = store?.category
+            ? `/images/markers/${store?.category}.png`
             : "/images/markers/default.png",
           imageSize = new window.kakao.maps.Size(40, 40),
           imageOption = { offset: new window.kakao.maps.Point(27, 69) };
@@ -22,10 +22,7 @@ export default function Markers({ map, stores, setCurrentStore }: MarkerProps) {
             imageSize,
             imageOption
           ),
-          markerPosition = new window.kakao.maps.LatLng(
-            store.y_dnts,
-            store.x_cnts
-          );
+          markerPosition = new window.kakao.maps.LatLng(store.lat, store.lng);
 
         var marker = new window.kakao.maps.Marker({
           position: markerPosition,
@@ -34,7 +31,7 @@ export default function Markers({ map, stores, setCurrentStore }: MarkerProps) {
 
         marker.setMap(map);
 
-        var content = `<div class="infowindow">${store.upso_nm}</div>`;
+        var content = `<div class="infowindow">${store.name}</div>`;
 
         // 커스텀 오버레이를 생성합니다
         var customOverlay = new window.kakao.maps.CustomOverlay({
@@ -61,7 +58,7 @@ export default function Markers({ map, stores, setCurrentStore }: MarkerProps) {
         });
       });
     }
-  }, [map, stores]);
+  }, [map, setCurrentStore, stores]);
 
   useEffect(() => {
     loadKakaoMarkers();
