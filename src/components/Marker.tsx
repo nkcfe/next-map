@@ -1,12 +1,15 @@
+import { mapState } from "@/atom";
 import { StoreType } from "@/interface";
 import { useCallback, useEffect } from "react";
+import { useRecoilValue } from "recoil";
 
 interface MarkerProps {
-  map: any;
   store: StoreType;
 }
 
-export default function Marker({ map, store }: MarkerProps) {
+export default function Marker({ store }: MarkerProps) {
+  const map = useRecoilValue(mapState);
+
   const loadKakaoMarker = useCallback(() => {
     if (map && store) {
       var imageSrc = store?.category

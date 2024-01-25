@@ -47,11 +47,6 @@
     @apply text-gray-600;
   }
   .navbar__list--mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: start;
-    padding: 24px 18px;
     @apply flex flex-col gap-4 px-[18px] py-[6];
   }
 }
