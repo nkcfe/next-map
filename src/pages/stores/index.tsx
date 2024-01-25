@@ -8,6 +8,7 @@ import { Fragment, useCallback, useEffect, useRef } from "react";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import Loader from "@/components/Loader";
 import { clear } from "console";
+import SearchFilter from "@/components/SearchFilter";
 
 export default function StoreListPage() {
   const ref = useRef<HTMLDivElement>(null);
@@ -61,6 +62,7 @@ export default function StoreListPage() {
 
   return (
     <div className="px-4 md:max-w-4xl mx-auto py-8">
+      <SearchFilter />
       <ul role="list" className="divide-y divide-gray-100">
         {isLoading ? (
           <Loading />
