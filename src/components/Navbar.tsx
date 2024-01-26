@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { data, status } = useSession();
-  
+  console.log(data);
   return (
     <>
       <div className="navbar">
@@ -24,6 +24,9 @@ export default function Navbar() {
           </Link>
           <Link href="/users/likes" className="navbar__list--item">
             찜한 가게
+          </Link>
+          <Link href="/users/mypage" className="navbar__list--item">
+            마이페이지
           </Link>
 
           {status === "authenticated" ? (
@@ -56,12 +59,22 @@ export default function Navbar() {
             <Link href="/users/likes" className="navbar__list--item--mobile">
               찜한 가게
             </Link>
+            <Link href="/users/mypage" className="navbar__list--item--mobile">
+              마이페이지
+            </Link>
             {status === "authenticated" ? (
-              <button type="button" onClick={() => signOut()}>
+              <button
+                type="button"
+                onClick={() => signOut()}
+                className="navbar__list--item--mobile"
+              >
                 로그아웃
               </button>
             ) : (
-              <Link href="/api/auth/signin" className="navbar__list--item">
+              <Link
+                href="/api/auth/signin"
+                className="navbar__list--item--mobile"
+              >
                 로그인
               </Link>
             )}
