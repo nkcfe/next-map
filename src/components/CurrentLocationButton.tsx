@@ -1,3 +1,5 @@
+"use client";
+
 import { mapState } from "@/atom";
 import { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";

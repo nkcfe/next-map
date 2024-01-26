@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { StoreType } from "@/interface";
@@ -11,9 +12,9 @@ import { toast } from "react-toastify";
 import Like from "@/components/Like";
 import Comments from "@/components/comments";
 
-export default function StorePage() {
+export default function StorePage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = params.id;
   const { status } = useSession();
 
   const fetchStore = async () => {

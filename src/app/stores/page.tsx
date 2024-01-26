@@ -1,3 +1,5 @@
+"use client";
+
 import Loading from "@/components/Loading";
 import { StoreType } from "@/interface";
 import axios from "axios";
@@ -6,8 +8,6 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import Loader from "@/components/Loader";
 import SearchFilter from "@/components/SearchFilter";
-
-import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { searchState } from "@/atom";
 import StoreList from "@/components/StoreList";
@@ -18,8 +18,6 @@ export default function StoreListPage() {
   const ref = useRef<HTMLDivElement>(null);
   const pageRef = useIntersectionObserver(ref, {});
   const isPageEnd = !!pageRef?.isIntersecting;
-
-  const router = useRouter();
 
   const searchParams = {
     q: searchValue?.q,
