@@ -8,6 +8,7 @@ import { StoreType } from "@/interface";
 import { useRouter } from "next/router";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentStoreState } from "@/atom";
+import Like from "./Like";
 
 export default function StoreBox() {
   const store = useRecoilValue(currentStoreState);
@@ -45,9 +46,12 @@ export default function StoreBox() {
                 <IoMdClose />
               </button>
             </div>
-            <div className="mt-4 flex gap-2 items-center">
-              <LuMapPin />
-              {store.address}
+            <div className="flex justify-between gap-4">
+              <div className="mt-4 flex gap-2 items-center col-span-3">
+                <LuMapPin />
+                {store.address}
+              </div>
+              <Like storeId={store.id} />
             </div>
             <div className="mt-2 flex gap-2 items-center">
               <FaPhoneAlt />
