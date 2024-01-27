@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { StoreType } from "@/interface";
@@ -11,9 +12,16 @@ import { toast } from "react-toastify";
 import Like from "@/components/Like";
 import Comments from "@/components/comments";
 
-export default function StorePage() {
+interface StorePageProps {
+  params: { id: string };
+  searchParams: {
+    page: string;
+  };
+}
+
+export default function StorePage({ params, searchParams }: StorePageProps) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = params.id;
   const { status } = useSession();
 
   const fetchStore = async () => {
@@ -162,7 +170,7 @@ export default function StorePage() {
             <Map lat={store.lat} lng={store.lng} zoom={5} />
             <Marker store={store} />
           </div>
-          <Comments storeId={store.id} />
+          <Comments storeId={store.id} page={searchParams} />
         </>
       )}
     </>

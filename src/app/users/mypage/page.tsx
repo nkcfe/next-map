@@ -1,16 +1,21 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import Pagination from "@/components/Pagination";
 import CommentList from "@/components/comments/CommentList";
 import { CommentApiResponse } from "@/interface";
 import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 
-export default function Example() {
+export default function Example({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
   const { data: session } = useSession();
-  const router = useRouter();
-  const { page = "1" }: any = router.query;
+
+  const page = searchParams?.page || "1";
 
   const fetchComments = async () => {
     const { data } = await axios(
@@ -95,7 +100,7 @@ export default function Example() {
           댓글 리스트
         </p>
       </div>
-      <CommentList comments={comments} displayStore={true} />
+      <CommentList comments={comments} displayStore={true} refetch={refetch} />
       <Pagination
         total={comments?.totalPage}
         page={page}

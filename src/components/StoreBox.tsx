@@ -1,11 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { LuMapPin } from "react-icons/lu";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa6";
-import { StoreType } from "@/interface";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentStoreState } from "@/atom";
 import Like from "./Like";
