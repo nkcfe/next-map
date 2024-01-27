@@ -23,6 +23,7 @@ export default function StorePage({ params, searchParams }: StorePageProps) {
   const router = useRouter();
   const id = params.id;
   const { status } = useSession();
+  const page = searchParams?.page || "1";
 
   const fetchStore = async () => {
     const { data } = await axios(`/api/stores?id=${id}`);
@@ -170,7 +171,7 @@ export default function StorePage({ params, searchParams }: StorePageProps) {
             <Map lat={store.lat} lng={store.lng} zoom={5} />
             <Marker store={store} />
           </div>
-          <Comments storeId={store.id} page={searchParams} />
+          <Comments storeId={store.id} page={page} />
         </>
       )}
     </>

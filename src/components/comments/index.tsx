@@ -9,7 +9,7 @@ import Pagination from "../Pagination";
 
 interface CommentProps {
   storeId: number;
-  page: { page: string };
+  page: string;
 }
 
 export default function Comments({ storeId, page }: CommentProps) {
@@ -40,7 +40,7 @@ export default function Comments({ storeId, page }: CommentProps) {
 
       <Pagination
         total={comments?.totalPage}
-        page={page.page}
+        page={page}
         pathname={`/stores/${storeId}`}
       />
     </div>
