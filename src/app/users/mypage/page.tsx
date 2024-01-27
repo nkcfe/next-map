@@ -6,13 +6,16 @@ import CommentList from "@/components/comments/CommentList";
 import { CommentApiResponse } from "@/interface";
 import axios from "axios";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 
-export default function Example({ params }: { params: { page?: string } }) {
+export default function Example({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
   const { data: session } = useSession();
-  const router = useRouter();
-  const page = params?.page || "1";
+
+  const page = searchParams?.page || "1";
 
   const fetchComments = async () => {
     const { data } = await axios(

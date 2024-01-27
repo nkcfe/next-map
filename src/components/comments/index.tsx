@@ -9,14 +9,11 @@ import Pagination from "../Pagination";
 
 interface CommentProps {
   storeId: number;
-  params?: {
-    page?: string;
-  };
+  page: { page: string };
 }
 
-export default function Comments({ storeId, params }: CommentProps) {
+export default function Comments({ storeId, page }: CommentProps) {
   const { status } = useSession();
-  const page: any = params?.page || "1";
 
   const fetchComments = async () => {
     const { data } = await axios(
@@ -43,7 +40,7 @@ export default function Comments({ storeId, params }: CommentProps) {
 
       <Pagination
         total={comments?.totalPage}
-        page={page}
+        page={page.page}
         pathname={`/stores/${storeId}`}
       />
     </div>
